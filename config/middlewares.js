@@ -8,7 +8,7 @@ module.exports = [
           useDefaults: true,
           directives: {
             "connect-src": ["'self'", "https:"],
-            "img-src": ["'self'", 'data:', 'blob:','res.cloudinary.com', 'market-assets.strapi.io'],
+            "img-src": ["'self'", 'data:', 'blob:','res.cloudinary.com', 'market-assets.strapi.io','localhost'],
             "media-src": ["'self'", 'data:', 'blob:'],
             upgradeInsecureRequests: null,
           },

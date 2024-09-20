@@ -800,7 +800,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
   attributes: {
     Name: Attribute.String;
-    Icon: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Icon: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
