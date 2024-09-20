@@ -847,11 +847,6 @@ export interface ApiDoctorDoctor extends Schema.CollectionType {
     Phone: Attribute.Integer;
     Premium: Attribute.Boolean & Attribute.DefaultTo<false>;
     Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    category: Attribute.Relation<
-      'api::doctor.doctor',
-      'oneToOne',
-      'api::category.category'
-    >;
     categories: Attribute.Relation<
       'api::doctor.doctor',
       'manyToMany',
