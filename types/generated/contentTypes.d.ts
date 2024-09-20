@@ -794,6 +794,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'Category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -801,6 +802,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   attributes: {
     Name: Attribute.String;
     Icon: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    doctors: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::doctor.doctor'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -831,7 +837,7 @@ export interface ApiDoctorDoctor extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
+    Name: Attribute.String;
     Address: Attribute.String;
     Patients: Attribute.String;
     Year_of_Experience: Attribute.String;
@@ -841,6 +847,16 @@ export interface ApiDoctorDoctor extends Schema.CollectionType {
     Phone: Attribute.Integer;
     Premium: Attribute.Boolean & Attribute.DefaultTo<false>;
     Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    category: Attribute.Relation<
+      'api::doctor.doctor',
+      'oneToOne',
+      'api::category.category'
+    >;
+    categories: Attribute.Relation<
+      'api::doctor.doctor',
+      'manyToMany',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
