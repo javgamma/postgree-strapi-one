@@ -15,7 +15,16 @@ module.exports = [
         },
       },
     },
-  'strapi::cors',
+    {
+      name: 'strapi::cors',
+      config: {
+        enabled: true,
+        origin: ['http://localhost:3000', 'https://tu-dominio-vercel.vercel.app'],
+        headers: ['*'],
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+        keepHeaderOnError: true,
+      },
+    },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
