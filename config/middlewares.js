@@ -15,13 +15,23 @@ module.exports = [
         },
       },
     },
+    // {
+    //   name: 'strapi::cors',
+    //   config: {
+    //     enabled: true,
+    //     origin: ['http://localhost:3000', 'https://tu-dominio-vercel.vercel.app'],
+    //     headers: ['*'],
+    //     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+    //     keepHeaderOnError: true,
+    //   },
+    // },
+
     {
       name: 'strapi::cors',
       config: {
-        enabled: true,
         origin: ['http://localhost:3000', 'https://tu-dominio-vercel.vercel.app'],
-        headers: ['*'],
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+        headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
         keepHeaderOnError: true,
       },
     },
