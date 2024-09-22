@@ -42,7 +42,7 @@
     },
     "Image": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "allowedTypes": [
         "images",
@@ -55,7 +55,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::category.category",
-      "mappedBy": "doctors"
+      "inversedBy": "doctors"
     },
     "appointments": {
       "type": "relation",

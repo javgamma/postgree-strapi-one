@@ -810,10 +810,10 @@ export interface ApiAppointmentAppointment extends Schema.CollectionType {
       'manyToOne',
       'api::doctor.doctor'
     >;
-    categories: Attribute.Relation<
+    hospitals: Attribute.Relation<
       'api::appointment.appointment',
       'manyToMany',
-      'api::category.category'
+      'api::hospital.hospital'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -852,10 +852,10 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'manyToMany',
       'api::doctor.doctor'
     >;
-    appointments: Attribute.Relation<
+    hospitals: Attribute.Relation<
       'api::category.category',
       'manyToMany',
-      'api::appointment.appointment'
+      'api::hospital.hospital'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -896,7 +896,7 @@ export interface ApiDoctorDoctor extends Schema.CollectionType {
     About: Attribute.RichText;
     Phone: Attribute.Integer;
     Premium: Attribute.Boolean & Attribute.DefaultTo<false>;
-    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     categories: Attribute.Relation<
       'api::doctor.doctor',
       'manyToMany',
@@ -918,6 +918,54 @@ export interface ApiDoctorDoctor extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::doctor.doctor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHospitalHospital extends Schema.CollectionType {
+  collectionName: 'hospitals';
+  info: {
+    singularName: 'hospital';
+    pluralName: 'hospitals';
+    displayName: 'hospital';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Address: Attribute.String;
+    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Email: Attribute.Email;
+    Phone: Attribute.BigInteger;
+    Description: Attribute.RichText;
+    Premium: Attribute.Boolean;
+    OpeningHours: Attribute.Time;
+    categories: Attribute.Relation<
+      'api::hospital.hospital',
+      'manyToMany',
+      'api::category.category'
+    >;
+    appointments: Attribute.Relation<
+      'api::hospital.hospital',
+      'manyToMany',
+      'api::appointment.appointment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hospital.hospital',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hospital.hospital',
       'oneToOne',
       'admin::user'
     > &
@@ -978,6 +1026,7 @@ declare module '@strapi/types' {
       'api::appointment.appointment': ApiAppointmentAppointment;
       'api::category.category': ApiCategoryCategory;
       'api::doctor.doctor': ApiDoctorDoctor;
+      'api::hospital.hospital': ApiHospitalHospital;
       'api::slider.slider': ApiSliderSlider;
     }
   }

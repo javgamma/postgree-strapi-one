@@ -32,10 +32,10 @@
       "target": "api::doctor.doctor",
       "inversedBy": "categories"
     },
-    "appointments": {
+    "hospitals": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::appointment.appointment",
+      "target": "api::hospital.hospital",
       "mappedBy": "categories"
     }
   }
